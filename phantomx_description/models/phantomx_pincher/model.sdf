@@ -1,0 +1,352 @@
+<sdf version='1.6'>
+  <model name='Phantom_X'>
+    <link name='base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0.027277 -5.2e-05 0.042715 0 -0 0</pose>
+        <mass>0.352</mass>
+        <inertia>
+          <ixx>0.662213</ixx>
+          <ixy>0.000438</ixy>
+          <ixz>-0.133928</ixz>
+          <iyy>0.758616</iyy>
+          <iyz>-0.000837</iyz>
+          <izz>0.717514</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_base.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/base.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='base_joint' type='fixed'>
+      <child>base_link</child>
+      <parent>world</parent>
+    </joint>
+    <link name='shoulder_link'>
+      <pose frame=''>0 0 0.137 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.001031 -3.2e-05 -0.013806 0 -0 0</pose>
+        <mass>0.118</mass>
+        <inertia>
+          <ixx>0.030893</ixx>
+          <ixy>2e-06</ixy>
+          <ixz>-0.000383</ixz>
+          <iyy>0.036432</iyy>
+          <iyz>-2.6e-05</iyz>
+          <izz>0.018984</izz>
+        </inertia>
+      </inertial>
+      <collision name='shoulder_link_collision'>
+        <pose frame=''>0 0 0 0 -0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_shoulder.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='shoulder_link_visual'>
+        <pose frame=''>0 0 0 0 -0 1.5708</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/shoulder.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='shoulder_joint' type='revolute'>
+      <child>shoulder_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-2.61799</lower>
+          <upper>2.61799</upper>
+          <effort>1000</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='lower_arm_link'>
+      <pose frame=''>0 0 0.137 -1.57079 -1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0.080988 -2.3e-05 -0.000748 0 -0 0</pose>
+        <mass>0.162</mass>
+        <inertia>
+          <ixx>0.031204</ixx>
+          <ixy>2e-05</ixy>
+          <ixz>0.001864</ixz>
+          <iyy>0.124182</iyy>
+          <iyz>-3e-06</iyz>
+          <izz>0.111578</izz>
+        </inertia>
+      </inertial>
+      <collision name='lower_arm_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_bicep.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='lower_arm_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/lower_arm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='lower_arm_joint' type='revolute'>
+      <child>lower_arm_link</child>
+      <parent>shoulder_link</parent>
+      <axis>
+        <xyz>-0 -1 -0</xyz>
+        <limit>
+          <lower>-2.61799</lower>
+          <upper>2.61799</upper>
+          <effort>1000</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='upper_arm_link'>
+      <pose frame=''>0 -0 0.242 -1.57079 -1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0.080988 -2.3e-05 -0.000748 0 -0 0</pose>
+        <mass>0.162</mass>
+        <inertia>
+          <ixx>0.031204</ixx>
+          <ixy>2e-05</ixy>
+          <ixz>0.001864</ixz>
+          <iyy>0.124182</iyy>
+          <iyz>-3e-06</iyz>
+          <izz>0.111578</izz>
+        </inertia>
+      </inertial>
+      <collision name='upper_arm_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_bicep.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='upper_arm_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/upper_arm.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='upper_arm_joint' type='revolute'>
+      <child>upper_arm_link</child>
+      <parent>lower_arm_link</parent>
+      <axis>
+        <xyz>-0 -1 -0</xyz>
+        <limit>
+          <lower>-2.61799</lower>
+          <upper>2.61799</upper>
+          <effort>1000</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='wrist_link'>
+      <pose frame=''>0 -0 0.347 -1.57079 -1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0.047093 0.009933 -2.3e-05 0 -0 0</pose>
+        <mass>0.1601</mass>
+        <inertia>
+          <ixx>0.053907</ixx>
+          <ixy>-0.00236294</ixy>
+          <ixz>2.09999e-05</ixz>
+          <iyy>0.0576394</iyy>
+          <iyz>3.1e-05</iyz>
+          <izz>0.0688784</izz>
+        </inertia>
+      </inertial>
+      <collision name='wrist_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_wrist.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='wrist_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/gripper_body.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='wrist_joint' type='revolute'>
+      <child>wrist_link</child>
+      <parent>upper_arm_link</parent>
+      <axis>
+        <xyz>-0 -1 -0</xyz>
+        <limit>
+          <lower>-2.61799</lower>
+          <upper>2.61799</upper>
+          <effort>1000</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='finger_1_link'>
+      <pose frame=''>0 -0 0.418844 -1.57079 -1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0.010769 0 -0.007406 0 -0 0</pose>
+        <mass>0.018</mass>
+        <inertia>
+          <ixx>0.002959</ixx>
+          <ixy>0</ixy>
+          <ixz>-0.000707</ixz>
+          <iyy>0.00287</iyy>
+          <iyz>0</iyz>
+          <izz>0.004524</izz>
+        </inertia>
+      </inertial>
+      <collision name='finger_1_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_finger.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='finger_1_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/finger.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='finger_1_joint' type='prismatic'>
+      <child>finger_1_link</child>
+      <parent>wrist_link</parent>
+      <axis>
+        <xyz>-0 -1 -0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.014</upper>
+          <effort>1000</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <link name='finger_2_link'>
+      <pose frame=''>0 -0 0.418844 1.57079 -1.57079 3.14159</pose>
+      <inertial>
+        <pose frame=''>0.010769 0 -0.007406 0 -0 0</pose>
+        <mass>0.018</mass>
+        <inertia>
+          <ixx>0.002959</ixx>
+          <ixy>0</ixy>
+          <ixz>-0.000707</ixz>
+          <iyy>0.00287</iyy>
+          <iyz>0</iyz>
+          <izz>0.004524</izz>
+        </inertia>
+      </inertial>
+      <collision name='finger_2_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/simple_finger.dae</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='finger_2_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://phantom_urdf/models/phantom_x/meshes/finger.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name='finger_2_joint' type='prismatic'>
+      <child>finger_2_link</child>
+      <parent>wrist_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.014</upper>
+          <effort>1000</effort>
+          <velocity>0.5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+    <plugin name='gazebo_ros_control' filename='libgazebo_ros_control.so'/>
+    <static>0</static>
+    <plugin name='joint_state_publisher' filename='libgazebo_ros_joint_state_publisher.so'>
+      <jointName>shoulder_joint, lower_arm_joint, upper_arm_joint, wrist_joint, finger_1_joint, finger_2_joint</jointName>
+    </plugin>
+  </model>
+</sdf>

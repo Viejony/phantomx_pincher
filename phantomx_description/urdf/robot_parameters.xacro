@@ -1,0 +1,73 @@
+<?xml version="1.0" ?>
+<!-- values -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- Link names -->
+	<xacro:property name="link_00_name" value="base_link" />
+	<xacro:property name="link_01_name" value="shoulder_link" />
+	<xacro:property name="link_02_name" value="lower_arm_link" />
+	<xacro:property name="link_03_name" value="upper_arm_link" />
+	<xacro:property name="link_04_name" value="wrist_link" />
+	<xacro:property name="link_05_name" value="finger_1_link" />
+	<xacro:property name="link_06_name" value="finger_2_link" />
+	<xacro:property name="link_07_name" value="tool_link" />
+	<xacro:property name="link_08_name" value="world" />
+	<!-- Joint names -->
+	<xacro:property name="joint_00_name" value="base_joint" />
+	<xacro:property name="joint_01_name" value="shoulder_joint" />
+	<xacro:property name="joint_02_name" value="lower_arm_joint" />
+	<xacro:property name="joint_03_name" value="upper_arm_joint" />
+	<xacro:property name="joint_04_name" value="wrist_joint" />
+	<xacro:property name="joint_05_name" value="finger_1_joint" />
+	<xacro:property name="joint_06_name" value="finger_2_joint" />
+	<xacro:property name="joint_07_name" value="tool_joint" />
+	<!-- transmission names -->
+	<xacro:property name="trans_00_name" value="trans_shoulder_joint" />
+	<xacro:property name="trans_01_name" value="trans_lower_arm_joint" />
+	<xacro:property name="trans_02_name" value="trans_upper_arm_joint" />
+	<xacro:property name="trans_03_name" value="trans_wrist_joint" />
+	<xacro:property name="trans_04_name" value="trans_finger_1_joint" />
+	<xacro:property name="trans_05_name" value="trans_finger_2_joint" />
+	<!-- actuator names -->
+	<xacro:property name="actr_00_name" value="shoulder_joint_motor" />
+	<xacro:property name="actr_01_name" value="lower_arm_joint_motor" />
+	<xacro:property name="actr_02_name" value="upper_arm_joint_motor" />
+	<xacro:property name="actr_03_name" value="wrist_joint_motor" />
+	<xacro:property name="actr_04_name" value="finger_1_joint_motor" />
+	<xacro:property name="actr_05_name" value="finger_2_joint_motor" />
+	<!--  geometry mesh files  6-->
+	<xacro:property name="geom_00_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/base.dae" />
+	<xacro:property name="geom_01_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/shoulder.dae"  />
+	<xacro:property name="geom_02_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/lower_arm.dae" />
+	<xacro:property name="geom_03_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/upper_arm.dae" />
+	<xacro:property name="geom_04_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/gripper_body.dae" />
+	<xacro:property name="geom_05_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/finger.dae" />
+	<xacro:property name="geom_06_name" value="package://phantomx_description/models/phantomx_pincher/meshes/visual/finger.dae" />
+	<!-- collision mesh files  5-->
+	<xacro:property name="colli_00_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_base.dae" />
+	<xacro:property name="colli_01_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_shoulder.dae" />
+	<xacro:property name="colli_02_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_bicep.dae" />
+	<xacro:property name="colli_03_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_bicep.dae" />
+	<xacro:property name="colli_04_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_wrist.dae"  />
+	<xacro:property name="colli_05_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_finger.dae" />
+	<xacro:property name="colli_06_name" value="package://phantomx_description/models/phantomx_pincher/meshes/collision/simple_finger.dae" />
+</robot>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

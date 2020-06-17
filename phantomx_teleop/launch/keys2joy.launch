@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- Launch arguments -->
+    <arg name="axis_scale" default="1.0" />
+
+    <!-- Key Publisher -->
+    <node name="key_publisher" pkg="phantomx_teleop" type="key_publisher.py" />
+
+    <!-- Key to Joy Publisher -->
+    <node name="key2joy" pkg="phantomx_teleop" type="key2joy.py" args="_axis_scale:=$(arg axis_scale)" />
+
+</launch>

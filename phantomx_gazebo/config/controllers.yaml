@@ -1,0 +1,16 @@
+arm_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - shoulder_joint
+    - lower_arm_joint
+    - upper_arm_joint
+    - wrist_joint
+    - finger_1_joint
+    - finger_2_joint
+  gains:
+    shoulder_joint: {p: 500, d: 10, i: 20, i_clamp: 1}
+    lower_arm_joint: {p: 500, d: 10, i: 20, i_clamp: 1}
+    upper_arm_joint: {p: 500, d: 10, i: 20, i_clamp: 1}
+    wrist_joint: {p: 500, d: 10, i: 20, i_clamp: 1}
+    finger_1_joint: {p: 500, d: 10, i: 20, i_clamp: 1}
+    finger_2_joint: {p: 500, d: 10, i: 20, i_clamp: 1}

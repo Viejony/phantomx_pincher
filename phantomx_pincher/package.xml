@@ -1,0 +1,18 @@
+<package>
+  <name>phantomx_pincher</name>
+  <version>0.1.0</version>
+  <author>Jhonyfer Angarita Moreno</author>
+  <description>
+    The phantomx_pincher meta package contains multiple packages to simulate PhantomX Pincher arm.
+  </description>
+  <license>BSD</license>
+  <maintainer email="jhnagaritamo@unal.edu.co">Jhonyfer Angarita Moreno</maintainer>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>phantomx_description</run_depend>
+  <run_depend>phantomx_gazebo</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<robot name="Phantom_X" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- Includes -->
+	<xacro:include filename="$(find phantomx_description)/urdf/macros.xacro"/>
+	<xacro:include filename="$(find phantomx_description)/urdf/robot_parameters.xacro"/>
+	<!-- Properties -->
+	<xacro:property name="M_PI" value="3.1415926535897931"/>
+	<xacro:property name="M_PI_M" value="1.570796332679"/>
+	<link name="${link_08_name}"/>
+	<!-- Base -->
+	<m_link name="${link_00_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="geom_00_name" mass="0.352" in_xyz="-0.027277 -0.000052 0.042715" ixx="0.662213" iyy="0.758616" izz="0.717514" ixy="0.000438" ixz="-0.133928" iyz="-0.000837" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh="${colli_00_name}"/>
+	<m_joint name="${joint_00_name}" type="fixed" origin_rpy="0 0 0" origin_xyz="0 0 0" parent="${link_08_name}" child="${link_00_name}" limit_e="0.0" limit_l="0.0" limit_u="0.0" limit_v="0.0" />
+	<!-- Shoulder c-->
+	<m_link name="${link_01_name}" o_rpy="0 0 ${M_PI_M}" o_xyz="0 0 0" geo_mesh="geom_01_name" mass="0.118" in_xyz="0.001031 -0.000032 -0.013806" ixx="0.030893" iyy="0.036432" izz="0.018984" ixy="0.000002" ixz="-0.000383" iyz="-0.000026" co_xyz="0 0 0" co_rpy="0 0 ${M_PI_M}" col_mesh="${colli_01_name}"/>
+	<m_joint name="${joint_01_name}" type="revolute" origin_rpy="0 0 0" origin_xyz="0 0 0.137" parent="${link_00_name}" child="${link_01_name}" limit_e="1000.0" limit_l="-2.617993" limit_u="2.617993" limit_v="0.5" />
+	<!-- Lower arm -->
+	<m_link name="${link_02_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="geom_02_name" mass="0.162" in_xyz="0.080988 -0.000023 -0.000748" ixx="0.031204" iyy="0.124182" izz="0.111578" ixy="0.00002" ixz="0.001864" iyz="-0.000003" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh="${colli_02_name}"/>
+	<m_joint name="${joint_02_name}" type="revolute" origin_rpy="${M_PI_M} -${M_PI_M} 0" origin_xyz="0 0 0" parent="${link_01_name}" child="${link_02_name}" limit_e="1000.0" limit_l="-2.617993" limit_u="2.617993" limit_v="0.5" />
+	<!-- Upper arm -->
+	<m_link name="${link_03_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="geom_03_name" mass="0.162" in_xyz="0.080988 -0.000023 -0.000748" ixx="0.031204" iyy="0.124182" izz="0.111578" ixy="0.00002" ixz="0.001864" iyz="-0.000003" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh="${colli_03_name}"/>
+	<m_joint name="${joint_03_name}" type="revolute" origin_rpy="0 0 0" origin_xyz="0.105 0 0" parent="${link_02_name}" child="${link_03_name}" limit_e="1000.0" limit_l="-2.617993" limit_u="2.617993" limit_v="0.5" />
+	<!-- wrist arm -->
+	<m_link name="${link_04_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="geom_04_name" mass="0.160" in_xyz="0.047054 0.009939 -0.000023" ixx="0.053897" iyy="0.057629" izz="0.068868" ixy="-0.002353" ixz="0.000011" iyz="0.000041" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh="${colli_04_name}"/>
+	<m_joint name="${joint_04_name}" type="revolute" origin_rpy="0 0 0" origin_xyz="0.105 0 0" parent="${link_03_name}" child="${link_04_name}" limit_e="1000.0" limit_l="-2.617993" limit_u="2.617993" limit_v="0.5" />
+	<!-- Finger_1 -->
+	<m_link name="${link_05_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="geom_05_name" mass="0.018" in_xyz="0.010769 0 -0.007406" ixx="0.002959" iyy="0.00287" izz="0.004524" ixy="0" ixz="-0.000707" iyz="0" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh="${colli_05_name}"/>
+	<m_joint name="${joint_05_name}" type="prismatic" origin_rpy="0 0 0" origin_xyz="0.071844 0 0" parent="${link_04_name}" child="${link_05_name}" limit_e="1000.0" limit_l="0" limit_u="0.015" limit_v="0.5" />
+	<!-- Finger_2 -->
+	<m_link name="${link_06_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="geom_06_name" mass="0.018" in_xyz="0.010769 0 -0.007406"  ixx="0.002959" iyy="0.00287" izz="0.004524" ixy="0" ixz="-0.000707" iyz="0" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh="${colli_06_name}"/>
+	<m_joint name="${joint_06_name}" type="prismatic" origin_rpy="${M_PI} 0 0" origin_xyz="0.071844 0 0" parent="${link_05_name}" child="${link_06_name}" limit_e="1000.0" limit_l="0" limit_u="0.015" limit_v="0.5" />
+	<!-- Tool -->
+	<m_link name="${link_07_name}" o_rpy="0 0 0" o_xyz="0 0 0" geo_mesh="" mass="0.0001" in_xyz="0 0 0" ixx="0.00001" iyy="0.00001" izz="0.00001" ixy="0.0" ixz="0.0" iyz="0.0" co_xyz="0 0 0" co_rpy="0 0 0" col_mesh=""/>
+	<m_joint name="${joint_07_name}" type="fixed" origin_rpy="${M_PI} -${M_PI_M} 0" origin_xyz="0.110 0 0" parent="${link_04_name}" child="${link_07_name}" limit_e="0.0" limit_l="0" limit_u="0.0" limit_v="0.0" />
+	<!-- Transmission -->
+	<m_trans trans_name="${trans_00_name}" j_name="${joint_01_name}" act_name="${actr_00_name}"/>
+	<m_trans trans_name="${trans_01_name}" j_name="${joint_02_name}" act_name="${actr_01_name}"/>
+	<m_trans trans_name="${trans_02_name}" j_name="${joint_03_name}" act_name="${actr_02_name}"/>
+	<m_trans trans_name="${trans_03_name}" j_name="${joint_04_name}" act_name="${actr_03_name}"/>
+	<m_trans trans_name="${trans_04_name}" j_name="${joint_05_name}" act_name="${actr_04_name}"/>
+	<m_trans trans_name="${trans_05_name}" j_name="${joint_06_name}" act_name="${actr_05_name}"/>
+	<!-- Gazebo Plugins -->	
+	<call_gazebo/>
+</robot>
