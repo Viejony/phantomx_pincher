@@ -10,6 +10,9 @@
     <arg name="yaw" default="0.0" />
     <arg name="world" default="stage_01.world" />
 
+    <!-- Load URDF model into the parameter server -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find phantomx_description)/xacro/phantom_description.xacro"/>
+
     <!-- Load arm controller-->
     <rosparam file="$(find phantomx_gazebo)/config/controllers.yaml" command="load"/>
 
@@ -19,9 +22,6 @@
         <arg name="verbose" value="false" />
         <arg name="debug" value="false"/>
     </include>
-
-    <!-- Load URDF model into the parameter server -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find phantomx_description)/urdf/phantom_description.xacro"/>
 
     <!-- Spawn a PhantomX arm in Gazebo, using robot_description param -->
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model PhantomX -param robot_description -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -model $(arg robot_name)" />
