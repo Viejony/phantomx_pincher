@@ -9,8 +9,6 @@ project(phantomx_gazebo)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   controller_manager
-  gazebo
-  gazebo_ros
   joint_state_publisher
 )
 
