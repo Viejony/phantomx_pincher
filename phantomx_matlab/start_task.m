@@ -48,18 +48,18 @@ poses = zeros(8, 5);
 
 % Obtiene las cinemáticas inversas para cada punto
 % Punto de aproximación
-poses(1,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation), open_gripper];
+poses(1,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation, true), open_gripper];
 % Punto de recogida
-poses(2,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation), open_gripper];
-poses(3,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation), closed_gripper];
+poses(2,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation, true), open_gripper];
+poses(3,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation, true), closed_gripper];
 % Punto de elevación
-poses(4,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation), closed_gripper];
+poses(4,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation, true), closed_gripper];
 % Punto de desplazamiento
-poses(5,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation), closed_gripper];
+poses(5,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation, true), closed_gripper];
 % Punto de entrega
-poses(6,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation), closed_gripper];
-poses(7,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation), open_gripper];
-poses(8,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation), open_gripper];
+poses(6,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation, true), closed_gripper];
+poses(7,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation, true), open_gripper];
+poses(8,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation, true), open_gripper];
 
 % Cambia color del indicador a rojo y cambia el estado de la tarea
 set_running_mode_GUI(handles);
