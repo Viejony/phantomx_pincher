@@ -129,6 +129,7 @@ function figure1_CloseRequestFcn(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 % Hint: delete(hObject) closes the figure
 stop_timers();
+rosshutdown();
 delete(hObject);
 
 
@@ -140,6 +141,7 @@ function mode_radiobuttongoup_SelectionChangedFcn(hObject, eventdata, handles)
 manual_radiobutton = get(handles.manual_radiobutton, 'Value');
 automatic_radiobutton = get(handles.automatic_radiobutton, 'Value');
 if manual_radiobutton
+    fix_actual_pose();
     set_manual_mode(handles);
 end
 if automatic_radiobutton

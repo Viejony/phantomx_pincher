@@ -1,7 +1,8 @@
 %% Inicia la comunicación con ROS
 rosshutdown;
-rosinit;
-%rosinit("10.0.0.2");
+%rosinit;
+%rosinit('10.0.0.2');
+rosinit('10.0.0.2', 'NodeHost','10.0.0.2','NodeName','/matlab_global_node')
 
 % Creando el publisher y el mensaje para el control de las articulaciones
 global pose_publisher;
@@ -82,8 +83,8 @@ global actual_block;
 actual_block = 1;
 global n_blocks;
 n_blocks = 6;
-global actual_point;
-actual_point = [0,0,0,0];
+global actual_pose;
+actual_pose = [0,0,0,0];  %[x,y,z,delta]
 global min_joints;
 min_joints = [-deg2rad(150), -deg2rad(150), -deg2rad(150), -deg2rad(150), 0.0];
 global max_joints;
@@ -127,14 +128,14 @@ handles.t1.TimerFcn = @(~,~)update_gui_fields;
 start(handles.t1);
 
 % Timer para publicar los mensajes del joypad
-%handles.t2 = timer('StartDelay', 0, 'Period', 0.1, 'ExecutionMode', 'fixedRate');
-%handles.t2.TimerFcn = @(~,~)joy2joints_msgs;
-%start(handles.t2);
+handles.t2 = timer('StartDelay', 0, 'Period', 0.1, 'ExecutionMode', 'fixedRate');
+handles.t2.TimerFcn = @(~,~)joy2joints_msgs;
+start(handles.t2);
 
 % Timer para actualizar la imagen de la cámara
-%handles.t3 = timer('StartDelay', 0, 'Period', 0.1, 'ExecutionMode', 'fixedRate');
-%handles.t3.TimerFcn = @(~,~)update_camera_image;
-%start(handles.t3);
+handles.t3 = timer('StartDelay', 0, 'Period', 0.1, 'ExecutionMode', 'fixedRate');
+handles.t3.TimerFcn = @(~,~)update_camera_image;
+start(handles.t3);
 
 global default_delay;
 default_delay = 5;
