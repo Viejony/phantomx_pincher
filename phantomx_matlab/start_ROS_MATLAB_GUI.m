@@ -1,8 +1,7 @@
 %% Inicia la comunicación con ROS
 rosshutdown;
 %rosinit;
-%rosinit('10.0.0.2');
-rosinit('10.0.0.2', 'NodeHost','10.0.0.2','NodeName','/matlab_global_node')
+rosinit('10.0.0.2', 'NodeHost','10.0.0.3','NodeName','/matlab_global_node')
 
 % Creando el publisher y el mensaje para el control de las articulaciones
 global pose_publisher;
@@ -91,7 +90,7 @@ global max_joints;
 max_joints = [deg2rad(150), deg2rad(150), deg2rad(150), deg2rad(150), 0.030];
 
 % Inicialización de las matrices de puntos de las zonas de entrada y salida
-global input_points;
+global input_points;   %[x, y, z, t]
 global output1_points;
 global output2_points;
 global output3_points;

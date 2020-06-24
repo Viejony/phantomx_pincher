@@ -44,22 +44,34 @@ open_gripper = 0.03;
 closed_gripper = 0.0185;
 
 % Arreglo con las distintas poses para cada punto
-poses = zeros(8, 5);
+poses = zeros(9, 5);
+pp = get_actual_pose();
+poses(1,:) = [pp(1:4), pp(5)*2];
 
 % Obtiene las cinemáticas inversas para cada punto
 % Punto de aproximación
-poses(1,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation, true), open_gripper];
+poses(2,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation, true), open_gripper];
 % Punto de recogida
-poses(2,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation, true), open_gripper];
-poses(3,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation, true), closed_gripper];
+poses(3,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation, true), open_gripper];
+poses(4,:) = [get_ik([input_point(1), input_point(2), input_point(3)], orientation, true), closed_gripper];
 % Punto de elevación
-poses(4,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation, true), closed_gripper];
+poses(5,:) = [get_ik([input_point(1), input_point(2), input_point(3) + elevation], orientation, true), closed_gripper];
 % Punto de desplazamiento
-poses(5,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation, true), closed_gripper];
+poses(6,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation, true), closed_gripper];
 % Punto de entrega
-poses(6,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation, true), closed_gripper];
-poses(7,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation, true), open_gripper];
-poses(8,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation, true), open_gripper];
+poses(7,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation, true), closed_gripper];
+poses(8,:) = [get_ik([output_point(1), output_point(2), output_point(3)], orientation, true), open_gripper];
+poses(9,:) = [get_ik([output_point(1), output_point(2), output_point(3) + elevation], orientation, true), open_gripper];
+
+% Calcula las duraciones necesarias para cada movimiento, determinando el
+% delta máximo de rotación y teniendo en cuenta la velocidad angular máxima
+v_angmax = 1/6;  % rad/seg
+durations = zeros(1, 8);
+for i=1:1:8
+    dmax = max(abs(poses(i,1:4) - poses(i+1,1:4)));
+    dmax = max([dmax, abs((poses(i,5) - poses(i+1,5))*20)]);
+    durations(i) = dmax/v_angmax;
+end
 
 % Cambia color del indicador a rojo y cambia el estado de la tarea
 set_running_mode_GUI(handles);
@@ -67,12 +79,13 @@ global task_status;
 task_status = 'running';
 
 % Inicia la función de movimiento entre las cinco poses.
-global default_delay;
 for i=1:1:8
     if strcmp(task_status, 'running')
-        p = poses(i,1:5);
-        sendROSmsg(p, default_delay, 0);
-        pause(default_delay);
+        p = poses(i+1,1:5);
+        secs = int64(durations(i));
+        nsecs = (durations(i) - floor(durations(i)))*1000000.0;
+        sendROSmsg(p, secs, nsecs);
+        pause(durations(i)*1.1);
     else
         % Cambia color del indicador a verde
         set_waiting_mode_GUI(handles);

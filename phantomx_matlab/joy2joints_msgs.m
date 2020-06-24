@@ -41,10 +41,10 @@ end
 % Agregando deltas al gripper
 delta2 = 0.0;
 if buttons(1) == 1 && buttons(2) == 0
-    delta2 = -0.001;
+    delta2 = -0.0025;
 end
 if buttons(1) == 0 && buttons(2) == 1
-    delta2 = 0.001;
+    delta2 = 0.0025;
 end
 gripper = q0(5) + delta2;
 global min_joints;
