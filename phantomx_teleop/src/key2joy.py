@@ -6,14 +6,16 @@ import math
 from std_msgs.msg import String
 from sensor_msgs.msg import Joy
 
-key_mapping = { 'q': [-1,  0,  0,  0,  0],  # -axis1: -x
-                'w': [ 1,  0,  0,  0,  0],  # +axis1: +x
-                'a': [ 0, -1,  0,  0,  0],  # -axis2: -y
-                's': [ 0,  1,  0,  0,  0],  # +axis2: +y
-                'z': [ 0,  0, -1,  0,  0],  # -axis3: -z
-                'x': [ 0,  0,  1,  0,  0],  # +axis3: +z
-                'e': [ 0,  0,  0,  1,  0],  # button1: -delta
-                'r': [ 0,  0,  0,  0,  1],  # button2: +delta
+key_mapping = { 'q': [-1,  0,  0,  0,  0, 0, 0],  # -axis1: -x
+                'w': [ 1,  0,  0,  0,  0, 0, 0],  # +axis1: +x
+                'a': [ 0, -1,  0,  0,  0, 0, 0],  # -axis2: -y
+                's': [ 0,  1,  0,  0,  0, 0, 0],  # +axis2: +y
+                'z': [ 0,  0, -1,  0,  0, 0, 0],  # -axis3: -z
+                'x': [ 0,  0,  1,  0,  0, 0, 0],  # +axis3: +z
+                'e': [ 0,  0,  0,  1,  0, 0, 0],  # button1: -delta
+                'r': [ 0,  0,  0,  0,  1, 0, 0],  # button2: +delta
+				'd': [ 0,  0,  0,  0,  0, 1, 0],  # button1: -delta
+				'f': [ 0,  0,  0,  0,  0, 0, 1],  # button1: -delta
                 }
 n_rate = 10
 axis_scale = None
@@ -73,9 +75,17 @@ if __name__ == '__main__':
 	# Fetching parameters
 	axis_scale = fetch_param('~axis_scale', 1.0)
 
+	# Print key ussage
+	htu_msgs = ["How to use: Press any of the next keys of your keyboard on terminal that runs 'key_publisher' node:\n", 
+		"  q: -axis1", "  w: +axis1", "  a: -axis2", "  s: +axis2", "  z: -axis3", 
+		"  x: +axis3", "  e: -button1", "  r: -button2", "  d: -button3", "  f: -button3"]
+	for i in range(0, len(htu_msgs)):
+		print(htu_msgs[i])
+
 	# Loop	
 	while not rospy.is_shutdown():
 		
 		# Sending Twist message and sleeping
 		send_joy()
 		rate.sleep()
+		
