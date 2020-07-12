@@ -11,7 +11,7 @@ This meta package contains multiple packages of the PhantomX Pincher robot arm, 
 In this example, we assume that you are using Ubuntu 18.04 with ROS-Melodic. Install these ROS packages in your ROS distro:
 
 ```
-sudo apt install ros-melodic-controller-manager ros-melodic-joint-state-publisher ros-melodic-joy ros-melodic-xacro ros-melodic-effort-controllers
+sudo apt install ros-melodic-controller-manager ros-melodic-joint-state-publisher ros-melodic-joy ros-melodic-xacro ros-melodic-effort-controllers ros-melodic-joint-trajectory-controller
 ```
 
 The gripper of this robot needs a Gazebo plugin that makes grasp task simpler. Go to this [link](https://github.com/JenniferBuehler/gazebo-pkgs/wiki/Installation) and follow instructions to install that plugin.
